@@ -354,22 +354,33 @@
     // Create a field of objects
     for (let i = 0; i < 20; i++) {
       const obj = new THREE.Mesh(geometry, material);
-      obj.position.x = (Math.random() - 0.5) * 15;
-      obj.position.y = (Math.random() - 0.5) * 15;
-      obj.position.z = (Math.random() - 0.5) * 15 - 5;
+      // Store initial positions - wider distribution
+      const initialX = (Math.random() - 0.5) * 25;
+      const initialY = (Math.random() - 0.5) * 25;
+      const initialZ = (Math.random() - 0.5) * 25 - 10;
+      
+      obj.position.x = initialX;
+      obj.position.y = initialY;
+      obj.position.z = initialZ;
       obj.rotation.x = Math.random() * Math.PI;
       obj.rotation.y = Math.random() * Math.PI;
       obj.scale.set(
-        Math.random() * 0.5 + 0.1,
-        Math.random() * 0.5 + 0.1,
-        Math.random() * 0.5 + 0.1
+        Math.random() * 0.6 + 0.2,
+        Math.random() * 0.6 + 0.2,
+        Math.random() * 0.6 + 0.2
       );
+      // Store initial properties for reference
+      obj.userData = {
+        initialX: initialX,
+        initialY: initialY,
+        initialZ: initialZ
+      };
       objects.push(obj);
       scene.add(obj);
     }
 
-    // Position camera
-    camera.position.z = 5;
+    // Position camera - zoomed out
+    camera.position.z = 12;
 
     // Event listeners
     window.addEventListener('mousemove', (event) => {
@@ -422,19 +433,26 @@
         obj.rotation.x += 0.003;
         obj.rotation.y += 0.005;
         
-        // Mouse interaction
-        obj.position.x += (mouse.x * 0.03 - obj.position.x * 0.01) * 0.1;
-        obj.position.y += (mouse.y * 0.03 - obj.position.y * 0.01) * 0.1;
+        // Get initial position
+        const { initialX, initialY, initialZ } = obj.userData;
         
-        // Scroll interaction
-        obj.position.z = -5 + Math.sin(i + scrollY * 5) * 2;
-        obj.scale.x = obj.scale.y = obj.scale.z = 0.1 + Math.sin(i + scrollY * 3) * 0.1 + 0.1;
+        // Mouse interaction - reduced influence with return-to-position force
+        obj.position.x += (mouse.x * 2 - obj.position.x * 0.01) * 0.02 + (initialX - obj.position.x) * 0.01;
+        obj.position.y += (mouse.y * 2 - obj.position.y * 0.01) * 0.02 + (initialY - obj.position.y) * 0.01;
+        
+        // Scroll interaction with return-to-position force
+        const targetZ = initialZ + Math.sin(i * 0.5 + scrollY * 3) * 5;
+        obj.position.z += (targetZ - obj.position.z) * 0.05;
+        
+        // Scale variation with scroll
+        const baseScale = 0.2 + Math.sin(i * 0.5 + scrollY * 3) * 0.1;
+        obj.scale.x = obj.scale.y = obj.scale.z = baseScale + 0.2;
       });
       
-      // Camera follows mouse slightly
-      camera.position.x += (mouse.x * 2 - camera.position.x) * 0.05;
-      camera.position.y += (mouse.y * 2 - camera.position.y) * 0.05;
-      camera.lookAt(scene.position);
+      // Camera follows mouse slightly - gentler movement
+      camera.position.x += (mouse.x * 3 - camera.position.x) * 0.03;
+      camera.position.y += (mouse.y * 3 - camera.position.y) * 0.03;
+      camera.lookAt(0, 0, -10); // Look a bit into the scene
       
       renderer.render(scene, camera);
     }
