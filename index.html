@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>William Struve - Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #111;
+      color: #f5f5f5;
+      overflow-x: hidden;
+    }
+
+    .portfolio {
+      position: relative;
+      min-height: 100vh;
+    }
+
+    .three-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 0;
+      opacity: 0.5;
+      transition: opacity 0.5s ease;
+    }
+
+    section.active {
+      opacity: 1;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: #f5f5f5;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      color: #d1d5db;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      color: #9ca3af;
+    }
+
+    ul {
+      list-style-type: none;
+      margin-bottom: 1.5rem;
+    }
+
+    li {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 0.5rem;
+      color: #9ca3af;
+      display: flex;
+      align-items: center;
+    }
+
+    li::before {
+      content: "•";
+      color: #6366f1;
+      font-size: 1.5rem;
+      margin-right: 0.5rem;
+    }
+
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .job {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background-color: rgba(31, 41, 55, 0.5);
+      border-radius: 0.5rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .job-period {
+      font-size: 0.9rem;
+      color: #6366f1;
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      color: #6b7280;
+    }
+
+    .nav-dots {
+      position: fixed;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      z-index: 10;
+    }
+
+    .nav-dot {
+      width: 0.75rem;
+      height: 0.75rem;
+      border-radius: 50%;
+      background-color: rgba(156, 163, 175, 0.5);
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .nav-dot.active {
+      background-color: #6366f1;
+      transform: scale(1.3);
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.25rem;
+      }
+
+      h2 {
+        font-size: 1.75rem;
+      }
+
+      h3 {
+        font-size: 1.25rem;
+      }
+
+      p, li {
+        font-size: 1rem;
+      }
+
+      .skills-container {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-dots {
+        right: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="portfolio">
+    <div class="three-container" id="three-container"></div>
+    
+    <div class="content">
+      <section id="intro" class="active">
+        <h1>Fresh UCR CS Grad👋</h1>
+        <p>Hi, I'm William Struve, freshly graduated Computer Science student at UC Riverside in Southern California</p>
+      </section>
+      
+      <section id="background">
+        <h2>Background</h2>
+        <p>I have been programming for a couple years, and have experience with various languages such as C, HTML, and Java. More recently I've been learning CSS, JavaScript, Node, and React. I like fishing and music production as hobbies.</p>
+      </section>
+      
+      <section id="funfacts">
+        <h2>Fun facts about me</h2>
+        <ul>
+          <li>I have a pet cat named Stark</li>
+          <li>I can cook pasta because I'm Italian</li>
+          <li>I have great reflexes but terrible memory</li>
+        </ul>
+      </section>
+      
+      <section id="skills">
+        <h2>Skills</h2>
+        
+        <div class="skills-container">
+          <div class="skill-category">
+            <h3>Programming languages:</h3>
+            <ul>
+              <li>JavaScript</li>
+              <li>CSS</li>
+              <li>HTML</li>
+              <li>C</li>
+              <li>C++</li>
+              <li>Java</li>
+            </ul>
+          </div>
+          
+          <div class="skill-category">
+            <h3>IDEs:</h3>
+            <ul>
+              <li>VSCode</li>
+              <li>NetBeans</li>
+              <li>IntelliJ</li>
+              <li>Eclipse</li>
+              <li>Jupyter</li>
+            </ul>
+          </div>
+          
+          <div class="skill-category">
+            <h3>Frameworks:</h3>
+            <ul>
+              <li>React.js</li>
+              <li>Node.js</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      
+      <section id="experience">
+        <h2>Experience🧑‍💼</h2>
+        
+        <div class="job">
+          <h3>Mochinut Kitchen Staff</h3>
+          <p class="job-period">6/21 - 1/22</p>
+          <ul>
+            <li>Made and mixed dough, made corn dogs</li>
+            <li>Fried, frosted, and decorated donuts controlling supply</li>
+          </ul>
+        </div>
+        
+        <div class="job">
+          <h3>Aloha Senior Living Anaheim Caregiver</h3>
+          <p class="job-period">5/20 - 5/21</p>
+          <ul>
+            <li>Prepared breakfast, lunch, and dinner for residents, fed residents</li>
+            <li>Moved residents, changed diapers, cleaned facility</li>
+          </ul>
+        </div>
+        
+        <div class="job">
+          <h3>Lepow International Web Development Intern</h3>
+          <p class="job-period">6/19 - 4/19</p>
+          <ul>
+            <li>Created, updated, and edited web pages for various company sites</li>
+            <li>Worked with Wordpress, Elementor, and PHP</li>
+            <li>Note: took a tech hiatus due to TBI</li>
+          </ul>
+        </div>
+        
+        <div class="job">
+          <h3>Mt. San Antonio College Technical Education Resource Center Tutor</h3>
+          <p class="job-period">12/18 - 4/19</p>
+          <ul>
+            <li>Taught students Math / English / Physics / Computer Science</li>
+            <li>Simplified ideas taught in class for students to easily retain</li>
+          </ul>
+        </div>
+      </section>
+      
+      <section id="awards">
+        <h2>Awards</h2>
+        <ul>
+          <li>Boy Scouts of America Eagle Scout</li>
+          <li>AP Scholar with Distinction</li>
+        </ul>
+      </section>
+      
+      <section id="extracurriculars">
+        <h2>Extracurriculars</h2>
+        <ul>
+          <li>Former Mt. SAC swim and dive team</li>
+          <li>Jetbrains annual hackathon Attendee</li>
+          <li>Participant in PAVA community service program</li>
+        </ul>
+      </section>
+      
+      <footer>
+        <p>© <script>document.write(new Date().getFullYear())</script> William Struve</p>
+      </footer>
+    </div>
+    
+    <div class="nav-dots" id="nav-dots"></div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    // DOM Elements
+    const containerElement = document.getElementById('three-container');
+    const sections = document.querySelectorAll('section');
+    const navDotsContainer = document.getElementById('nav-dots');
+
+    // Create navigation dots
+    const sectionIds = ['intro', 'background', 'funfacts', 'skills', 'experience', 'awards', 'extracurriculars'];
+    
+    sectionIds.forEach(id => {
+      const dot = document.createElement('div');
+      dot.className = 'nav-dot';
+      if (id === 'intro') dot.classList.add('active');
+      dot.addEventListener('click', () => {
+        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+      });
+      navDotsContainer.appendChild(dot);
+    });
+
+    // Mouse and scroll state
+    const mouse = { x: 0, y: 0 };
+    let scrollY = 0;
+    let activeSection = 'intro';
+
+    // Three.js setup
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    containerElement.appendChild(renderer.domElement);
+
+    // Create objects
+    const geometry = new THREE.IcosahedronGeometry(1, 0);
+    const material = new THREE.MeshNormalMaterial();
+    const objects = [];
+
+    // Create a field of objects
+    for (let i = 0; i < 20; i++) {
+      const obj = new THREE.Mesh(geometry, material);
+      obj.position.x = (Math.random() - 0.5) * 15;
+      obj.position.y = (Math.random() - 0.5) * 15;
+      obj.position.z = (Math.random() - 0.5) * 15 - 5;
+      obj.rotation.x = Math.random() * Math.PI;
+      obj.rotation.y = Math.random() * Math.PI;
+      obj.scale.set(
+        Math.random() * 0.5 + 0.1,
+        Math.random() * 0.5 + 0.1,
+        Math.random() * 0.5 + 0.1
+      );
+      objects.push(obj);
+      scene.add(obj);
+    }
+
+    // Position camera
+    camera.position.z = 5;
+
+    // Event listeners
+    window.addEventListener('mousemove', (event) => {
+      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    });
+
+    window.addEventListener('scroll', () => {
+      scrollY = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+      
+      // Update active section
+      let found = false;
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= window.innerHeight * 0.5 && rect.bottom >= window.innerHeight * 0.5) {
+          if (activeSection !== section.id) {
+            activeSection = section.id;
+            
+            // Update active section class
+            sections.forEach(s => s.classList.remove('active'));
+            section.classList.add('active');
+            
+            // Update active dot
+            const dots = document.querySelectorAll('.nav-dot');
+            dots.forEach((dot, index) => {
+              if (sectionIds[index] === activeSection) {
+                dot.classList.add('active');
+              } else {
+                dot.classList.remove('active');
+              }
+            });
+          }
+          found = true;
+        }
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // Animation loop
+    function animate() {
+      requestAnimationFrame(animate);
+      
+      // Rotate objects
+      objects.forEach((obj, i) => {
+        obj.rotation.x += 0.003;
+        obj.rotation.y += 0.005;
+        
+        // Mouse interaction
+        obj.position.x += (mouse.x * 0.03 - obj.position.x * 0.01) * 0.1;
+        obj.position.y += (mouse.y * 0.03 - obj.position.y * 0.01) * 0.1;
+        
+        // Scroll interaction
+        obj.position.z = -5 + Math.sin(i + scrollY * 5) * 2;
+        obj.scale.x = obj.scale.y = obj.scale.z = 0.1 + Math.sin(i + scrollY * 3) * 0.1 + 0.1;
+      });
+      
+      // Camera follows mouse slightly
+      camera.position.x += (mouse.x * 2 - camera.position.x) * 0.05;
+      camera.position.y += (mouse.y * 2 - camera.position.y) * 0.05;
+      camera.lookAt(scene.position);
+      
+      renderer.render(scene, camera);
+    }
+    
+    animate();
+  </script>
+</body>
+</html>
